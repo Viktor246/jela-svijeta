@@ -1,0 +1,38 @@
+# This file is the entry point to configure your own services.
+# Files in the packages/ subdirectory configure your dependencies.
+
+# Put parameters here that don't need to change on each machine where the app is deployed
+# https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
+parameters:
+    # parameters for dummy data loading
+    # To load translations, the faker catchPhrase() method is used as it provides the best variety of words in multiple languages. 
+    # If this method is not supported for a given locale, the sentence() method is used as a fallback. The sentence() method generates Latin text from the Lorem provider.
+    languages_array:
+        en_US: 'English'
+        fr_FR: 'Français'
+        it_IT: 'Italiano'
+        de_DE: 'Deutsch'
+    categories_amount: 5
+    tags_amount: 10
+    ingredients_amount: 20
+    meals_amount: 50
+    # end of parameters for dummy data loading
+
+services:
+    # default configuration for services in *this* file
+    _defaults:
+        autowire: true      # Automatically injects dependencies in your services.
+        autoconfigure: true # Automatically registers your services as commands, event subscribers, etc.
+
+    # makes classes in src/ available to be used as services
+    # this creates a service per class whose id is the fully-qualified class name
+    App\:
+        resource: '../src/'
+        exclude:
+            - '../src/DependencyInjection/'
+            - '../src/Entity/'
+            - '../src/Kernel.php'
+
+    # add more service definitions when explicit configuration is needed
+    # please note that last definitions always *replace* previous ones
+
